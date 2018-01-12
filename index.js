@@ -5,7 +5,17 @@ const client = new Discord.Client();
 client.login(process.env.DISCORD_TOKEN);
 var url = process.env.MONGODB_URI;
 var walletData;
+var express = require('express');
+var app     = express();
+app.set('port', (process.env.PORT || 5000));
 
+//For avoidong Heroku $PORT error
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
 function recordWorkerData() {
   request.get('https://dwarfpool.com/eth/api?wallet=0x636508F54DB544e6BD1d17Ba5A4B8Bd73B5d6aEE')
     .then(r => {
