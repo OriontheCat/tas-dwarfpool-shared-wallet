@@ -23,7 +23,7 @@ function recordWorkerData() {
       console.log("walletData: "+walletData)
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        if (typeof walletData.last_payment_date != 'null' && (new Date().getTime() - Date.parse(walletData.last_payment_date).getTime()) < 2.1 * 60 * 1000) {
+        if (typeof walletData.last_payment_date != 'null' && (new Date().getTime() - new Date(walletData.last_payment_date).getTime()) < 2.1 * 60 * 1000) {
           client.on('ready', () => {
             console.log(`Logged in as ${client.user.tag}!`);
           });
