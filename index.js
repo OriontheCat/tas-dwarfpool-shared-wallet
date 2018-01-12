@@ -50,7 +50,7 @@ function recordWorkerData() {
               if (err) throw err;
               oldWalletShareAmount = result[0]
                 console.log("walletShareTest: "+ JSON.stringify(oldWalletShareAmount) + worker.hashrate)
-                db.collection("customers").updateOne({
+                db.collection("workers").updateOne({
                   name: key
                 }, {
                   name: key,
