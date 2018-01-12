@@ -57,6 +57,7 @@ function recordWorkerData() {
                   name: key,
                   walletShares: oldWalletShareAmount + worker.hashrate
                 }, function(err, res) {
+                  console.log(res)
                   if (err) throw err;
                   db.close();
                 });
