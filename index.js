@@ -46,7 +46,7 @@ function recordWorkerData() {
           var worker = walletData.workers[key];
           if (key != '2130706433' && worker.alive) {
             var oldWalletShareAmount;
-            db.collection("workers").find(key).toArray(function(err, result) {
+            db.collection("workers").find({name: key}).toArray(function(err, result) {
               if (err) throw err;
               oldWalletShareAmount = result[0]
               MongoClient.connect(url, function(err, db) {
