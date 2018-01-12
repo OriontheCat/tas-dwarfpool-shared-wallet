@@ -20,7 +20,7 @@ function recordWorkerData() {
   request.get('https://dwarfpool.com/eth/api?wallet=0x636508F54DB544e6BD1d17Ba5A4B8Bd73B5d6aEE')
     .then(r => {
       walletData = r.body;
-      console.log("walletData: "+walletData)
+      console.log("walletData: "+ JSON.stringify(walletData))
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         if (typeof walletData.last_payment_date != 'null' && (new Date().getTime() - new Date(walletData.last_payment_date).getTime()) < 2.1 * 60 * 1000) {
@@ -50,7 +50,7 @@ function recordWorkerData() {
               if (err) throw err;
               oldWalletShareAmount = result[0]
               MongoClient.connect(url, function(err, db) {
-                console.log("walletShareTest: "+ oldWalletShareAmount + worker.hashrate)
+                console.log("walletShareTest: "+ JSON.stringify(oldWalletShareAmount) + worker.hashrate)
                 db.collection("customers").updateOne({
                   name: key
                 }, {
