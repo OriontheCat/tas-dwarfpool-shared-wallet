@@ -48,7 +48,7 @@ function recordWorkerData() {
             var oldWalletShareAmount;
             db.collection("workers").find({name: key}).toArray(function(err, result) {
               if (err) throw err;
-              oldWalletShareAmount = result[0]
+              oldWalletShareAmount = result[0].walletShares
                 console.log("walletShareTest: "+ JSON.stringify(oldWalletShareAmount) + worker.hashrate)
                 db.collection("workers").updateOne({
                   name: key
@@ -56,7 +56,6 @@ function recordWorkerData() {
                   name: key,
                   walletShares: oldWalletShareAmount + worker.hashrate
                 }, function(err, res) {
-                  console.log(res)
                   if (err) throw err;
                   db.close();
                 });
