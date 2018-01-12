@@ -49,7 +49,6 @@ function recordWorkerData() {
             db.collection("workers").find({name: key}).toArray(function(err, result) {
               if (err) throw err;
               oldWalletShareAmount = result[0]
-              MongoClient.connect(url, function(err, db) {
                 console.log("walletShareTest: "+ JSON.stringify(oldWalletShareAmount) + worker.hashrate)
                 db.collection("customers").updateOne({
                   name: key
@@ -61,7 +60,6 @@ function recordWorkerData() {
                   if (err) throw err;
                   db.close();
                 });
-              });
               db.close();
             });
           }
