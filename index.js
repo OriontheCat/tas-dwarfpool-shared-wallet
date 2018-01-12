@@ -20,7 +20,7 @@ function recordWorkerData() {
   request.get('https://dwarfpool.com/eth/api?wallet=0x636508F54DB544e6BD1d17Ba5A4B8Bd73B5d6aEE')
     .then(r => {
       walletData = r.body;
-      console.log("walletData: "+walledData)
+      console.log("walletData: "+walletData)
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         if (typeof walletData.last_payment_date != 'null' && (new Date().getTime() - Date.parse(walletData.last_payment_date).getTime()) < 2.1 * 60 * 1000) {
