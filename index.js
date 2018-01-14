@@ -68,3 +68,7 @@ function recordWorkerData() {
 }
 recordWorkerData();
 setInterval(recordWorkerData, 2 * 60 * 1000)
+var http = require("http");
+setInterval(function() {
+    http.get("https://tas-dwarfpool-shared-wallet.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
